@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 class ViewController: UIViewController {
 
     var signUpMode = true
@@ -44,13 +44,56 @@ class ViewController: UIViewController {
     }
     
     @IBAction func topButtonPressed(_ sender: Any) {
-        if signUpMode{
-         
+        
+            if emailTextField.text != "" && passwordTextField.text != ""{
+                if let email = emailTextField.text {
+                    if let password  = passwordTextField.text{
+                       if signUpMode{
+                               Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+                            if error != nil{
+                                self.displayAlert("Error", (error?.localizedDescription)!)
+                                self.passwordTextField.text = ""
+                                self.emailTextField.text = ""
+                            }else{
+                                 print("successfully signed UP ")
+                                 // navigate after signing up
+                                }
+                        })
+                       }else{
+                        Auth.auth().signIn(withEmail: email, password: password, completion: { (_, error) in
+                            if error != nil {
+                                self.displayAlert("Error", (error?.localizedDescription)!)
+                            }else{
+                                //navigate after login
+                            }
+                        })
+                        }
+                        
+                    }
+                }
+            }else{
+               
+                self.displayAlert("Missing Fields", "Please Fill out the Fields ")
+            }
             
-        }
+            
+        
         
     }
     
 
 }
 
+
+extension ViewController{
+    
+    
+    func displayAlert(_ title : String , _ message :String ){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let Action = UIAlertAction(title: "ok" , style: .cancel) { (_) in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(Action)
+        self.present(alert, animated: true, completion: nil)
+    }
+}

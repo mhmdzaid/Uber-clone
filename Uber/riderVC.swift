@@ -15,6 +15,14 @@ class riderVC: UIViewController,CLLocationManagerDelegate{
     @IBOutlet weak var callUberButton: UIButton!
     @IBOutlet weak var map: MKMapView!
     
+    @IBAction func LogoutPressed(_ sender: Any) {
+        do{
+            try Auth.auth().signOut()
+        }catch{
+            print("error loging out ")
+        }
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func callUberPressed(_ sender: Any) {
         let email = (Auth.auth().currentUser?.email)!
@@ -24,7 +32,7 @@ class riderVC: UIViewController,CLLocationManagerDelegate{
             callUberButton.setTitle("Call Uber", for: .normal)
             Database.database().reference().child("RiderRequests").queryOrdered(byChild: "email").queryEqual(toValue: email).observe(.childAdded, with: { (snapShot) in
                 snapShot.ref.removeValue()
-                snapShot.ref.removeAllObservers()
+                Database.database().reference().child("RiderRequests").removeAllObservers()
             })
            
 
@@ -48,6 +56,7 @@ class riderVC: UIViewController,CLLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpMap()
+        checkUberIsCalled()
     }
 
     
@@ -73,6 +82,15 @@ class riderVC: UIViewController,CLLocationManagerDelegate{
         annotation.title = "your Location"
         map.addAnnotation(annotation)
         map.showAnnotations(map.annotations, animated: true)
+        }
+    }
+    
+    func checkUberIsCalled(){
+        if let email = Auth.auth().currentUser?.email{
+            Database.database().reference().child("RiderRequests").queryOrdered(byChild: "email").queryEqual(toValue: email).observe(.childAdded, with: { (snapShot) in
+                self.callUberButton.setTitle("Cancel Uber", for: .normal)
+                self.UberHasBeenCalled = true
+            })
         }
     }
 }

@@ -163,7 +163,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Whm-U6-tay"/>
                     </view>
-                    <navigationItem key="navigationItem" id="3UC-7m-KnN"/>
+                    <navigationItem key="navigationItem" id="3UC-7m-KnN">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="UPH-Fq-he2">
+                            <connections>
+                                <action selector="LogoutPressed:" destination="tXc-pC-aLQ" id="DOH-NI-5o8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="callUberButton" destination="pla-sA-Ghn" id="Zk1-kh-1yg"/>
                         <outlet property="map" destination="Wyx-Wl-Fpx" id="69s-UV-ngx"/>

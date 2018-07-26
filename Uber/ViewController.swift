@@ -57,6 +57,7 @@ class ViewController: UIViewController {
                             }else{
                                  print("successfully signed UP ")
                                  // navigate after signing up
+                                  self.performSegue(withIdentifier:"toRiderView" , sender: nil)
                                 }
                         })
                        }else{
@@ -65,6 +66,7 @@ class ViewController: UIViewController {
                                 self.displayAlert("Error", (error?.localizedDescription)!)
                             }else{
                                 //navigate after login
+                                self.performSegue(withIdentifier: "toRiderView", sender: nil)
                             }
                         })
                         }

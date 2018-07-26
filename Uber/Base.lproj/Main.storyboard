@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -64,7 +65,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSo-q9-W0Y">
-                                <rect key="frame" x="152" y="276" width="70" height="30"/>
+                                <rect key="frame" x="152.5" y="276" width="70" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="Qax-9g-mFA"/>
                                     <constraint firstAttribute="height" constant="30" id="VZB-yn-fVt"/>
@@ -118,11 +119,77 @@
                         <outlet property="riderLabel" destination="rB4-Ka-4cZ" id="b4i-Qu-Hym"/>
                         <outlet property="topButton" destination="cSo-q9-W0Y" id="bjO-Bo-PZg"/>
                         <outlet property="userSwitch" destination="OAF-UJ-eoL" id="qtU-Tl-9uu"/>
+                        <segue destination="4pf-78-gxY" kind="presentation" identifier="toRiderView" id="aR1-03-Swp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="116" y="110.19490254872565"/>
+        </scene>
+        <!--RiderVC-->
+        <scene sceneID="qRn-ce-AF0">
+            <objects>
+                <viewController id="tXc-pC-aLQ" customClass="riderVC" customModule="Uber" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xjQ-IV-gm1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wyx-Wl-Fpx">
+                                <rect key="frame" x="20" y="84" width="335" height="336"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Wyx-Wl-Fpx" secondAttribute="height" multiplier="335:336" id="kGo-ei-gsk"/>
+                                </constraints>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pla-sA-Ghn">
+                                <rect key="frame" x="129.5" y="453" width="116" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="116" id="1rP-61-5TM"/>
+                                    <constraint firstAttribute="height" constant="40" id="403-av-NRf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Call Uber"/>
+                                <connections>
+                                    <action selector="callUberPressed:" destination="tXc-pC-aLQ" eventType="touchUpInside" id="cGb-cb-hUh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pla-sA-Ghn" firstAttribute="top" secondItem="Wyx-Wl-Fpx" secondAttribute="bottom" constant="33" id="AQm-eu-ag2"/>
+                            <constraint firstItem="Wyx-Wl-Fpx" firstAttribute="leading" secondItem="Whm-U6-tay" secondAttribute="leading" constant="20" id="CaI-27-dyk"/>
+                            <constraint firstItem="pla-sA-Ghn" firstAttribute="centerX" secondItem="xjQ-IV-gm1" secondAttribute="centerX" id="P2w-CR-4nf"/>
+                            <constraint firstItem="Wyx-Wl-Fpx" firstAttribute="top" secondItem="Whm-U6-tay" secondAttribute="top" constant="20" id="dVw-80-rRU"/>
+                            <constraint firstItem="Whm-U6-tay" firstAttribute="trailing" secondItem="Wyx-Wl-Fpx" secondAttribute="trailing" constant="20" id="gaA-Qe-byx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Whm-U6-tay"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3UC-7m-KnN"/>
+                    <connections>
+                        <outlet property="callUberButton" destination="pla-sA-Ghn" id="Zk1-kh-1yg"/>
+                        <outlet property="map" destination="Wyx-Wl-Fpx" id="69s-UV-ngx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K6O-90-ZDN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1532" y="100"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="U7E-vn-1L0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4pf-78-gxY" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZI7-WW-NAc">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tXc-pC-aLQ" kind="relationship" relationship="rootViewController" id="qLc-rY-C0U"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bdf-vp-GcJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="836" y="100"/>
         </scene>
     </scenes>
 </document>

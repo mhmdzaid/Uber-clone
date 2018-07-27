@@ -55,9 +55,16 @@ class ViewController: UIViewController {
                                 self.passwordTextField.text = ""
                                 self.emailTextField.text = ""
                             }else{
-                                 print("successfully signed UP ")
+                                let request = Auth.auth().currentUser?.createProfileChangeRequest()
+                                if self.userSwitch.isOn{
+                                    request?.displayName = "Driver"
+                                    request?.commitChanges(completion: nil)
+                                }else{
+                                    request?.displayName = "Rider"
+                                    request?.commitChanges(completion: nil)
+                                    self.performSegue(withIdentifier:"toRiderView" , sender: nil)
+                                }
                                  // navigate after signing up
-                                  self.performSegue(withIdentifier:"toRiderView" , sender: nil)
                                 }
                         })
                        }else{
@@ -65,8 +72,12 @@ class ViewController: UIViewController {
                             if error != nil {
                                 self.displayAlert("Error", (error?.localizedDescription)!)
                             }else{
+                                if Auth.auth().currentUser?.displayName == "Driver"{
+                                    print("to Driver view Controller ")
+                                }else{
+                                     self.performSegue(withIdentifier: "toRiderView", sender: nil)
+                                }
                                 //navigate after login
-                                self.performSegue(withIdentifier: "toRiderView", sender: nil)
                             }
                         })
                         }
@@ -74,7 +85,6 @@ class ViewController: UIViewController {
                     }
                 }
             }else{
-               
                 self.displayAlert("Missing Fields", "Please Fill out the Fields ")
             }
             
@@ -89,6 +99,10 @@ class ViewController: UIViewController {
 
 extension ViewController{
     
+    override func viewDidAppear(_ animated: Bool) {
+      self.emailTextField.text = ""
+      self.passwordTextField.text = ""
+    }
     
     func displayAlert(_ title : String , _ message :String ){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

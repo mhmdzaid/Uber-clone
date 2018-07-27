@@ -14,6 +14,8 @@ class DriverVC: UIViewController {
     let LocationManager = CLLocationManager()
     var driverLocation = CLLocationCoordinate2D()
     var Requests : [DataSnapshot] = []
+   
+    
     @IBOutlet weak var tableView: UITableView!
     @IBAction func logoutPressed(_ sender: Any) {
         do{
@@ -31,6 +33,9 @@ class DriverVC: UIViewController {
         LocationManager.requestWhenInUseAuthorization()
         LocationManager.startUpdatingLocation()
         LocationManager.desiredAccuracy = kCLLocationAccuracyBest
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (_) in
+            self.tableView.reloadData()
+        }
     }
 
 }
@@ -71,10 +76,38 @@ extension DriverVC : UITableViewDataSource,UITableViewDelegate , CLLocationManag
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Requests.count
     }
     
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let snapShot = self.Requests[indexPath.row]
+        self.performSegue(withIdentifier: "RequestAcceptance", sender: snapShot)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let snapShot = sender as? DataSnapshot{
+         if let AcceptVC = segue.destination as? AcceptRequestVC{
+            if let riderDataDict = snapShot.value as? [String:AnyObject]{
+                if let email = riderDataDict["email"] as? String{
+                  if let lat = riderDataDict["lat"] as? Double{
+                     if let lon = riderDataDict["lon"] as? Double{
+                            AcceptVC.requestEmail = email
+                            let location =  CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                            AcceptVC.requestLocation = location
+                            AcceptVC.driverLocation = self.driverLocation
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let coord = manager.location?.coordinate{
             self.driverLocation = coord
@@ -85,4 +118,6 @@ extension DriverVC : UITableViewDataSource,UITableViewDelegate , CLLocationManag
    
         
     
-}
+    }
+    
+

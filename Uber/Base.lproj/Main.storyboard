@@ -221,11 +221,57 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="TRH-Mc-c53" id="NDf-ng-whv"/>
+                        <segue destination="zm0-fc-ZMb" kind="show" identifier="RequestAcceptance" id="NaO-PT-cFJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dTy-rI-SVS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1871.2" y="763.26836581709154"/>
+        </scene>
+        <!--Accept RequestVC-->
+        <scene sceneID="QcH-UR-K5W">
+            <objects>
+                <viewController id="zm0-fc-ZMb" customClass="AcceptRequestVC" customModule="Uber" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ckA-ER-JSl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4Lc-Z8-NbD">
+                                <rect key="frame" x="20" y="84" width="335" height="335"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4Lc-Z8-NbD" secondAttribute="height" multiplier="1:1" id="E04-cJ-ves"/>
+                                </constraints>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q51-JM-EnE">
+                                <rect key="frame" x="118" y="449" width="139" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="139" id="1y5-C8-8hV"/>
+                                    <constraint firstAttribute="height" constant="52" id="dSg-sg-OFf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Accept Request"/>
+                                <connections>
+                                    <action selector="acceptRequestPressed:" destination="zm0-fc-ZMb" eventType="touchUpInside" id="Uwd-Rl-f8c"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Lc-Z8-NbD" firstAttribute="top" secondItem="dJj-JZ-JMp" secondAttribute="top" constant="20" id="3Ip-Kq-Ek7"/>
+                            <constraint firstItem="q51-JM-EnE" firstAttribute="top" secondItem="4Lc-Z8-NbD" secondAttribute="bottom" constant="30" id="5hg-er-CSG"/>
+                            <constraint firstItem="dJj-JZ-JMp" firstAttribute="trailing" secondItem="4Lc-Z8-NbD" secondAttribute="trailing" constant="20" id="EX9-5K-N6O"/>
+                            <constraint firstItem="4Lc-Z8-NbD" firstAttribute="leading" secondItem="dJj-JZ-JMp" secondAttribute="leading" constant="20" id="kxj-mm-dpY"/>
+                            <constraint firstItem="q51-JM-EnE" firstAttribute="centerX" secondItem="ckA-ER-JSl" secondAttribute="centerX" id="rNN-vc-2tn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dJj-JZ-JMp"/>
+                    </view>
+                    <connections>
+                        <outlet property="map" destination="4Lc-Z8-NbD" id="Oj4-cZ-ck9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Ad-ep-ONm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2728.8000000000002" y="764.16791604197908"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="U7E-vn-1L0">

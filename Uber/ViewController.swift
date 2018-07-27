@@ -59,6 +59,7 @@ class ViewController: UIViewController {
                                 if self.userSwitch.isOn{
                                     request?.displayName = "Driver"
                                     request?.commitChanges(completion: nil)
+                                    self.performSegue(withIdentifier: "toDriverVC", sender: nil)
                                 }else{
                                     request?.displayName = "Rider"
                                     request?.commitChanges(completion: nil)
@@ -73,7 +74,7 @@ class ViewController: UIViewController {
                                 self.displayAlert("Error", (error?.localizedDescription)!)
                             }else{
                                 if Auth.auth().currentUser?.displayName == "Driver"{
-                                    print("to Driver view Controller ")
+                                   self.performSegue(withIdentifier: "toDriverVC", sender: nil)
                                 }else{
                                      self.performSegue(withIdentifier: "toRiderView", sender: nil)
                                 }

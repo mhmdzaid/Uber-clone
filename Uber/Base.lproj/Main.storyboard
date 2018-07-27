@@ -120,6 +120,7 @@
                         <outlet property="topButton" destination="cSo-q9-W0Y" id="bjO-Bo-PZg"/>
                         <outlet property="userSwitch" destination="OAF-UJ-eoL" id="qtU-Tl-9uu"/>
                         <segue destination="4pf-78-gxY" kind="presentation" identifier="toRiderView" id="aR1-03-Swp"/>
+                        <segue destination="SMm-1h-VOK" kind="presentation" identifier="toDriverVC" id="GKf-hU-jYe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -179,6 +180,53 @@
             </objects>
             <point key="canvasLocation" x="1532" y="100"/>
         </scene>
+        <!--DriverVC-->
+        <scene sceneID="dwl-uo-h2T">
+            <objects>
+                <viewController id="RaN-tS-E20" customClass="DriverVC" customModule="Uber" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Jv-R1-W16">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TRH-Mc-c53">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="riderRequestCell" id="D9S-hO-2LX">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D9S-hO-2LX" id="F1W-aP-Zet">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TRH-Mc-c53" firstAttribute="leading" secondItem="5Yn-m8-ZpB" secondAttribute="leading" id="5L6-BT-0Q2"/>
+                            <constraint firstItem="5Yn-m8-ZpB" firstAttribute="bottom" secondItem="TRH-Mc-c53" secondAttribute="bottom" id="5ZJ-L6-7tz"/>
+                            <constraint firstItem="5Yn-m8-ZpB" firstAttribute="trailing" secondItem="TRH-Mc-c53" secondAttribute="trailing" id="NaB-Ua-7e6"/>
+                            <constraint firstItem="TRH-Mc-c53" firstAttribute="top" secondItem="5Yn-m8-ZpB" secondAttribute="top" id="raN-yW-v9l"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5Yn-m8-ZpB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Lny-3e-y77">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="y19-mG-AH9">
+                            <connections>
+                                <action selector="logoutPressed:" destination="RaN-tS-E20" id="cLb-Kl-KIf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="TRH-Mc-c53" id="NDf-ng-whv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dTy-rI-SVS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1871.2" y="763.26836581709154"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="U7E-vn-1L0">
             <objects>
@@ -196,6 +244,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bdf-vp-GcJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="836" y="100"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vRQ-yT-0pW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SMm-1h-VOK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kg0-dr-2C5">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RaN-tS-E20" kind="relationship" relationship="rootViewController" id="bzK-bV-Imn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BdG-zx-Ync" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1172" y="763"/>
         </scene>
     </scenes>
 </document>

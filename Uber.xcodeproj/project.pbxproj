@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16CCB66F210B60A20014BC61 /* DriverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CCB66E210B60A10014BC61 /* DriverVC.swift */; };
 		16EA47322105C45D00225388 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EA47312105C45D00225388 /* AppDelegate.swift */; };
 		16EA47342105C45D00225388 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EA47332105C45D00225388 /* ViewController.swift */; };
 		16EA47372105C45D00225388 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16EA47352105C45D00225388 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16CCB66E210B60A10014BC61 /* DriverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverVC.swift; sourceTree = "<group>"; };
 		16EA472E2105C45C00225388 /* Uber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16EA47312105C45D00225388 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16EA47332105C45D00225388 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				16EA473A2105C45D00225388 /* LaunchScreen.storyboard */,
 				16EA473D2105C45D00225388 /* Info.plist */,
 				16EA47432105CF6B00225388 /* GoogleService-Info.plist */,
+				16CCB66E210B60A10014BC61 /* DriverVC.swift */,
 			);
 			path = Uber;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			files = (
 				16EA47342105C45D00225388 /* ViewController.swift in Sources */,
 				16EA47322105C45D00225388 /* AppDelegate.swift in Sources */,
+				16CCB66F210B60A20014BC61 /* DriverVC.swift in Sources */,
 				16EA47462105F9A500225388 /* riderVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -142,12 +142,12 @@
                                 </constraints>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pla-sA-Ghn">
-                                <rect key="frame" x="129.5" y="453" width="116" height="40"/>
+                                <rect key="frame" x="72.5" y="453" width="230" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="116" id="1rP-61-5TM"/>
+                                    <constraint firstAttribute="width" constant="230" id="1rP-61-5TM"/>
                                     <constraint firstAttribute="height" constant="40" id="403-av-NRf"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Call Uber"/>
                                 <connections>
                                     <action selector="callUberPressed:" destination="tXc-pC-aLQ" eventType="touchUpInside" id="cGb-cb-hUh"/>

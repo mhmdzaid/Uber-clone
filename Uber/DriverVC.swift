@@ -13,7 +13,7 @@ import MapKit
 class DriverVC: UIViewController {
     let LocationManager = CLLocationManager()
     var driverLocation = CLLocationCoordinate2D()
-    var Requests : [DataSnapshot] = []
+    var Requests : [DataSnapshot] = [DataSnapshot]()
    
     
     @IBOutlet weak var tableView: UITableView!
@@ -27,15 +27,18 @@ class DriverVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        LocationManager.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-        LocationManager.delegate = self
         LocationManager.requestWhenInUseAuthorization()
         LocationManager.startUpdatingLocation()
         LocationManager.desiredAccuracy = kCLLocationAccuracyBest
+        fetchingRequests()
         Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (_) in
             self.tableView.reloadData()
         }
+        
+         print("number of riders \(self.Requests.count)")
     }
 
 }
@@ -44,14 +47,19 @@ class DriverVC: UIViewController {
 
 extension DriverVC : UITableViewDataSource,UITableViewDelegate , CLLocationManagerDelegate{
     
-    override func viewWillAppear(_ animated: Bool) {
+     func fetchingRequests() {
         Database.database().reference().child("RiderRequests").observe(.childAdded) { (snapshot) in
-            
-            self.Requests.append(snapshot)
-            self.tableView.reloadData()
+             if let riderDataDict = snapshot.value as? [String:AnyObject]{
+                if let _ = riderDataDict["driver's Latitude "] as? Double{
+                }else{
+                    self.Requests.append(snapshot)
+                    self.tableView.reloadData()
+                }
+            }
+           
              
         }
-        print("number of riders \(self.Requests.count)")
+       
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "riderRequestCell", for: indexPath)
